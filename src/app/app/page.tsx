@@ -116,7 +116,7 @@ const pressStyle = {
   transition: "transform 0.15s cubic-bezier(.2,.8,.4,1.2), box-shadow 0.15s ease, filter 0.15s ease",
   cursor: "pointer",
 };
-const pressHandlers = (cb) => ({
+const pressHandlers = (cb?: (e: React.MouseEvent | React.TouchEvent) => void) => ({
   onMouseDown: (e) => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.filter = "brightness(0.95)"; },
   onMouseUp: (e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "brightness(1)"; cb && cb(e); },
   onMouseLeave: (e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "brightness(1)"; },
