@@ -694,18 +694,27 @@ function MascotJu({ mood = 3, size = 120, speaking = false, message = "", person
   return (
     <div style={{ textAlign: "center", position: "relative" }}>
       <div style={{ position: "relative", display: "inline-block" }}>
-        <img
-          src={imgSrc}
-          alt="Ju"
-          style={{
-            width: size,
-            height: size,
-            objectFit: "contain",
-            animation: "juFloat 3s ease-in-out infinite",
-            filter: `drop-shadow(${glowColor})${personaColor ? ` hue-rotate(${personaColor === '#B8C4F0' ? '0' : personaColor === '#D4A0D0' ? '280' : personaColor === '#E8D5A3' ? '40' : '120'}deg)` : ''}`,
-            transition: "filter 0.5s ease",
-          }}
-        />
+        <div style={{
+          width: size, height: size, borderRadius: size * 0.25,
+          background: "rgba(255,255,255,0.90)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: glowColor,
+          animation: "juFloat 3s ease-in-out infinite",
+          overflow: "hidden",
+          transition: "all 0.5s ease",
+        }}>
+          <img
+            src={imgSrc}
+            alt="Ju"
+            style={{
+              width: size * 0.92,
+              height: size * 0.92,
+              objectFit: "contain",
+              filter: personaColor ? `hue-rotate(${personaColor === '#B8C4F0' ? '0' : personaColor === '#D4A0D0' ? '280' : personaColor === '#E8D5A3' ? '40' : '120'}deg)` : undefined,
+              transition: "filter 0.5s ease",
+            }}
+          />
+        </div>
         {personaColor && (
           <div style={{
             position: "absolute", inset: 0, borderRadius: "50%",
@@ -1059,7 +1068,9 @@ function InsightsScreen({ onNavigate, entries, t, theme, dark }) {
       <RevealOnScroll delay={200}>
       <div style={{ background: dark ? "rgba(30,27,54,0.7)" : "rgba(255,255,255,0.5)", borderRadius: 20, padding: 20, marginBottom: 16, backdropFilter: "blur(16px)", border: dark ? "1px solid rgba(124,110,219,0.15)" : "1px solid rgba(255,255,255,0.5)", boxShadow: "0 2px 16px rgba(124,110,219,0.06)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-          <img src={JU_IMAGES.main} alt="Ju" style={{ width: 36, height: "auto", objectFit: "contain" }} />
+          <div style={{ width: 40, height: 40, borderRadius: 10, background: "rgba(255,255,255,0.90)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, overflow: "hidden" }}>
+            <img src={JU_IMAGES.main} alt="Ju" style={{ width: 36, height: 36, objectFit: "contain" }} />
+          </div>
           <div>
             <div style={{ fontSize: 12, color: dark ? "#B0A8D8" : "#8B7FD4", fontWeight: 600, textTransform: "uppercase", letterSpacing: 1 }}>{t.weekly_summary}</div>
           </div>
@@ -1166,13 +1177,20 @@ function CoachScreen({ onNavigate, t, theme, dark }) {
         {messages.length === 0 && (
           <div style={{ textAlign: "center", marginTop: 60 }}>
             <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <img src={PERSONA_IMAGES[persona.id]} alt={persona.name} style={{
-                width: 110, height: 110, objectFit: "contain",
+              <div style={{
+                width: 120, height: 120, borderRadius: 28,
+                background: "rgba(255,255,255,0.92)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: `0 0 30px ${persona.color}60, 0 4px 20px rgba(0,0,0,0.15)`,
                 animation: "juFloat 3s ease-in-out infinite",
-                filter: `drop-shadow(0 0 20px ${persona.color}40)`,
                 transition: "all 0.5s ease",
-                display: "block", margin: "0 auto",
-              }} />
+                overflow: "hidden",
+              }}>
+                <img src={PERSONA_IMAGES[persona.id]} alt={persona.name} style={{
+                  width: 110, height: 110, objectFit: "contain",
+                  display: "block",
+                }} />
+              </div>
               <div style={{
                 marginTop: 8, padding: "8px 16px",
                 background: `${persona.color}15`,
@@ -1314,7 +1332,9 @@ function SignupPrompt({ entries, t, dark, theme, onDismiss, onSignup }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 200, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", animation: "fadeUp 0.3s ease" }}>
       <div style={{ background: dark ? "#1E1B36" : "#fff", borderRadius: 24, padding: "32px 24px", maxWidth: 340, width: "90%", textAlign: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
-        <img src={JU_IMAGES.main} alt="Ju" style={{ width: 64, height: "auto", animation: "juFloat 3s ease-in-out infinite" }} />
+        <div style={{ width: 80, height: 80, borderRadius: 20, background: "rgba(255,255,255,0.90)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto", animation: "juFloat 3s ease-in-out infinite", boxShadow: "0 0 20px rgba(124,110,219,0.3)", overflow: "hidden" }}>
+          <img src={JU_IMAGES.main} alt="Ju" style={{ width: 72, height: 72, objectFit: "contain" }} />
+        </div>
         <h3 style={{ fontSize: 20, fontWeight: 800, color: dark ? "#E8E4F8" : "#1A1A2E", marginTop: 16, fontFamily: "var(--font-serif, Georgia, serif)" }}>{t.signup_title}</h3>
         <p style={{ fontSize: 14, color: dark ? "#9B93C0" : "#777", lineHeight: 1.6, marginTop: 8 }}>
           {t.signup_desc.replace("{n}", entries.length)}
