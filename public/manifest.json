@@ -1,0 +1,22 @@
+{
+  "name": "Nuju — AI Journal",
+  "short_name": "Nuju",
+  "description": "The 30-second AI journal that understands your life",
+  "start_url": "/app",
+  "display": "standalone",
+  "background_color": "#F5F3FF",
+  "theme_color": "#7C6EDB",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
