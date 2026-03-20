@@ -116,7 +116,7 @@ const pressStyle = {
   transition: "transform 0.15s cubic-bezier(.2,.8,.4,1.2), box-shadow 0.15s ease, filter 0.15s ease",
   cursor: "pointer",
 };
-const pressHandlers = (cb) => ({
+const pressHandlers = (cb?: (e: React.MouseEvent | React.TouchEvent) => void) => ({
   onMouseDown: (e) => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.filter = "brightness(0.95)"; },
   onMouseUp: (e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "brightness(1)"; cb && cb(e); },
   onMouseLeave: (e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.filter = "brightness(1)"; },
@@ -824,7 +824,7 @@ function HomeScreen({ onNavigate, entries, streak, t, theme, dark }) {
       {selectedMood && (
         <div style={{ marginTop: 20, textAlign: "center", animation: "fadeUp 0.4s ease" }}>
           <div style={{ fontSize: 12, color: dark ? "#B0A8D8" : "#8B7FD4", marginBottom: 8, fontWeight: 500 }}>{t.energy}</div>
-          <input type="range" min="0" max="100" value={energy} onChange={(e) => setEnergy(e.target.value)}
+          <input type="range" min="0" max="100" value={energy} onChange={(e) => setEnergy(Number(e.target.value))}
             style={{ width: "80%", accentColor: "#7C6EDB" }} />
           <div style={{ display: "flex", justifyContent: "space-between", width: "80%", margin: "4px auto 0", fontSize: 10, color: dark ? "#7B6FC0" : "#999" }}>
             <span>{t.drained}</span><span>{t.energized}</span>
